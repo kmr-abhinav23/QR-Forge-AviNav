@@ -159,7 +159,7 @@ Or simply run with **VS Code Live Server**.
 **Abhinav**
 
 GitHub
-https://github.com/abhinav20-pixel
+https://github.com/kmr-abhinav23
 
 ---
 
