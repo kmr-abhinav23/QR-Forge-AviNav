@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Universal QR Generator - QR Forge - AviNav</title>
+    <link rel="icon" href="assets/favicon.png" type="image/png">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#667eea">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+
+    <nav class="navbar clay-panel">
+        <div class="container nav-content">
+            <a href="index.html" class="logo">
+                <i class="fa-solid fa-qrcode"></i> QR Forge
+            </a>
+            <div class="nav-right-group">
+                <div class="nav-links">
+                    <a href="index.html" class="nav-link"><i class="fa-solid fa-house"></i> Home</a>
+                    <a href="upi.html" class="nav-link"><i class="fa-brands fa-google-pay"></i> UPI</a>
+                    <a href="whatsapp.html" class="nav-link"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+                    <a href="wifi.html" class="nav-link"><i class="fa-solid fa-wifi"></i> WiFi</a>
+                    <a href="universal.html" class="nav-link active"><i class="fa-solid fa-link"></i> Universal</a>
+                    <a href="scanner.html" class="nav-link"><i class="fa-solid fa-camera"></i> Scanner</a>
+                    <a href="history.html" class="nav-link"><i class="fa-solid fa-clock-rotate-left"></i> History</a>
+                </div>
+                <button class="mobile-menu-btn"><i class="fa-solid fa-bars"></i></button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="generator-layout">
+            <!-- Form Section -->
+            <div class="generator-form-panel clay-panel fade-in-up">
+                <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+                    <div class="card-icon" style="margin: 0;"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                    <div>
+                        <h2 style="font-size: 1.8rem; font-weight: 800; color: var(--primary);">Universal QR Studio</h2>
+                        <p style="color: var(--text-muted); font-size: 0.9rem;">Generate customizable QRs for 9 data types.</p>
+                    </div>
+                </div>
+
+                <!-- 9 Generator Tabs -->
+                <div class="tabs">
+                    <button class="tab-btn active" data-tab="tab-text"><i class="fa-solid fa-align-left"></i> Text</button>
+                    <button class="tab-btn" data-tab="tab-url"><i class="fa-solid fa-link"></i> URL</button>
+                    <button class="tab-btn" data-tab="tab-imagelink"><i class="fa-solid fa-image"></i> Image Link</button>
+                    <button class="tab-btn" data-tab="tab-imageupload"><i class="fa-solid fa-file-image"></i> Image Upload</button>
+                    <button class="tab-btn" data-tab="tab-email"><i class="fa-solid fa-envelope"></i> Email</button>
+                    <button class="tab-btn" data-tab="tab-sms"><i class="fa-solid fa-comment-sms"></i> SMS</button>
+                    <button class="tab-btn" data-tab="tab-phone"><i class="fa-solid fa-phone"></i> Phone</button>
+                    <button class="tab-btn" data-tab="tab-location"><i class="fa-solid fa-location-dot"></i> Location</button>
+                    <button class="tab-btn" data-tab="tab-vcard"><i class="fa-solid fa-address-card"></i> VCard</button>
+                </div>
+
+                <form id="uniForm">
+                    <!-- 1. Text Tab -->
+                    <div id="tab-text" class="tab-content active">
+                        <div class="form-group">
+                            <label for="uniText">Plain Text *</label>
+                            <textarea id="uniText" class="clay-input" rows="4" placeholder="Enter plain text content..."></textarea>
+                        </div>
+                    </div>
+
+                    <!-- 2. URL Tab -->
+                    <div id="tab-url" class="tab-content">
+                        <div class="form-group">
+                            <label for="uniUrl">Website URL *</label>
+                            <input type="url" id="uniUrl" class="clay-input" placeholder="https://example.com">
+                        </div>
+                    </div>
+
+                    <!-- 3. Image Link Tab -->
+                    <div id="tab-imagelink" class="tab-content">
+                        <div class="form-group">
+                            <label for="uniImageLink">Image Web URL *</label>
+                            <input type="url" id="uniImageLink" class="clay-input" placeholder="https://example.com/image.jpg">
+                            <small style="color:var(--text-muted); display:block; margin-top:5px;">Direct link to hosted image online.</small>
+                        </div>
+                    </div>
+
+                    <!-- 4. Image Upload Tab -->
+                    <div id="tab-imageupload" class="tab-content">
+                        <div class="form-group">
+                            <label for="uniImageFile">Upload Image File (PNG, JPG, WEBP, SVG)</label>
+                            <input type="file" id="uniImageFile" class="clay-input" accept="image/*">
+                            <small style="color:var(--text-muted); display:block; margin-top:5px;">Compresses images to fit within standard QR code storage limit (~2.5KB).</small>
+                            <img id="imgCompressPreview" src="" alt="Compressed Preview" style="display:none; max-width:120px; border-radius:10px; margin-top:10px; box-shadow:var(--clay-shadow-out);">
+                        </div>
+                    </div>
+
+                    <!-- 5. Email Tab -->
+                    <div id="tab-email" class="tab-content">
+                        <div class="form-group">
+                            <label for="uniEmail">Email Address *</label>
+                            <input type="email" id="uniEmail" class="clay-input" placeholder="contact@example.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="uniEmailSubj">Subject</label>
+                            <input type="text" id="uniEmailSubj" class="clay-input" placeholder="Inquiry regarding...">
+                        </div>
+                        <div class="form-group">
+                            <label for="uniEmailBody">Message Body</label>
+                            <textarea id="uniEmailBody" class="clay-input" rows="3" placeholder="Hello, I would like to..."></textarea>
+                        </div>
+                    </div>
+
+                    <!-- 6. SMS Tab -->
+                    <div id="tab-sms" class="tab-content">
+                        <div class="form-group">
+                            <label for="uniSmsPhone">Recipient Phone Number *</label>
+                            <input type="tel" id="uniSmsPhone" class="clay-input" placeholder="+1234567890">
+                        </div>
+                        <div class="form-group">
+                            <label for="uniSmsMsg">Pre-filled Message</label>
+                            <textarea id="uniSmsMsg" class="clay-input" rows="3" placeholder="Type SMS message..."></textarea>
+                        </div>
+                    </div>
+
+                    <!-- 7. Phone Tab -->
+                    <div id="tab-phone" class="tab-content">
+                        <div class="form-group">
+                            <label for="uniPhone">Phone Number *</label>
+                            <input type="tel" id="uniPhone" class="clay-input" placeholder="+1234567890">
+                        </div>
+                    </div>
+
+                    <!-- 8. Location Tab -->
+                    <div id="tab-location" class="tab-content">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="uniLat">Latitude</label>
+                                <input type="text" id="uniLat" class="clay-input" placeholder="28.6139">
+                            </div>
+                            <div class="form-group">
+                                <label for="uniLng">Longitude</label>
+                                <input type="text" id="uniLng" class="clay-input" placeholder="77.2090">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="uniMapUrl">OR Google Maps Link</label>
+                            <input type="url" id="uniMapUrl" class="clay-input" placeholder="https://maps.google.com/?q=...">
+                        </div>
+                    </div>
+
+                    <!-- 9. VCard Tab -->
+                    <div id="tab-vcard" class="tab-content">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="vName">Full Name *</label>
+                                <input type="text" id="vName" class="clay-input" placeholder="John Doe">
+                            </div>
+                            <div class="form-group">
+                                <label for="vPhone">Phone</label>
+                                <input type="tel" id="vPhone" class="clay-input" placeholder="+1234567890">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="vEmail">Email</label>
+                                <input type="email" id="vEmail" class="clay-input" placeholder="john@example.com">
+                            </div>
+                            <div class="form-group">
+                                <label for="vCompany">Company</label>
+                                <input type="text" id="vCompany" class="clay-input" placeholder="Acme Inc">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="vWeb">Website</label>
+                            <input type="url" id="vWeb" class="clay-input" placeholder="https://example.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="vAddress">Address</label>
+                            <input type="text" id="vAddress" class="clay-input" placeholder="City, Country">
+                        </div>
+                    </div>
+
+                    <!-- Advanced Customization Studio Accordions -->
+                    <div class="customizer-accordion">
+                        <!-- A. Pre-made Templates -->
+                        <div class="accordion-header" data-target="accTemplates">
+                            <span><i class="fa-solid fa-wand-magic-sparkles"></i> A. Pre-made Templates</span>
+                            <i class="fa-solid fa-chevron-down acc-icon"></i>
+                        </div>
+                        <div class="accordion-content" id="accTemplates">
+                            <div class="templates-grid">
+                                <div class="template-badge" data-template="business">Business</div>
+                                <div class="template-badge" data-template="birthday">Birthday</div>
+                                <div class="template-badge" data-template="wedding">Wedding</div>
+                                <div class="template-badge" data-template="festival">Festival</div>
+                                <div class="template-badge" data-template="restaurant">Restaurant</div>
+                                <div class="template-badge" data-template="shop">Shop</div>
+                                <div class="template-badge" data-template="invoice">Invoice</div>
+                                <div class="template-badge" data-template="modern">Modern</div>
+                                <div class="template-badge" data-template="minimal">Minimal</div>
+                                <div class="template-badge" data-template="premium">Premium</div>
+                            </div>
+                        </div>
+
+                        <!-- B. Decorative Frames -->
+                        <div class="accordion-header" data-target="accFrames">
+                            <span><i class="fa-solid fa-border-top-left"></i> B. Decorative Frames</span>
+                            <i class="fa-solid fa-chevron-down acc-icon"></i>
+                        </div>
+                        <div class="accordion-content" id="accFrames">
+                            <div class="frames-grid">
+                                <div class="frame-card active" data-frame="none">None</div>
+                                <div class="frame-card" data-frame="classic">Classic</div>
+                                <div class="frame-card" data-frame="rounded">Rounded</div>
+                                <div class="frame-card" data-frame="business">Business</div>
+                                <div class="frame-card" data-frame="coupon">Coupon</div>
+                                <div class="frame-card" data-frame="instagram">Instagram</div>
+                                <div class="frame-card" data-frame="whatsapp">WhatsApp</div>
+                                <div class="frame-card" data-frame="premium">Premium</div>
+                            </div>
+                            <div class="form-group" style="margin-top: 15px;">
+                                <label for="frameTextInput">Frame Text Label</label>
+                                <input type="text" id="frameTextInput" class="clay-input" value="SCAN ME" placeholder="e.g. SCAN ME, PAY HERE, SCAN ME!">
+                            </div>
+                        </div>
+
+                        <!-- C. Shapes & Eyes -->
+                        <div class="accordion-header" data-target="accShapes">
+                            <span><i class="fa-solid fa-shapes"></i> C. QR Shapes & Eyes</span>
+                            <i class="fa-solid fa-chevron-down acc-icon"></i>
+                        </div>
+                        <div class="accordion-content" id="accShapes">
+                            <label style="font-size:0.85rem; font-weight:600; margin-bottom:6px; display:block;">Dots Pattern Style</label>
+                            <div class="shapes-grid" style="margin-bottom:15px;">
+                                <div class="shape-btn active" data-shape="square">Square</div>
+                                <div class="shape-btn" data-shape="dots">Dots</div>
+                                <div class="shape-btn" data-shape="rounded">Rounded</div>
+                                <div class="shape-btn" data-shape="extra-rounded">Extra Round</div>
+                                <div class="shape-btn" data-shape="classy">Classy</div>
+                                <div class="shape-btn" data-shape="classy-rounded">Classy Rnd</div>
+                            </div>
+
+                            <label style="font-size:0.85rem; font-weight:600; margin-bottom:6px; display:block;">Corner Eyes Style</label>
+                            <div class="shapes-grid">
+                                <div class="shape-btn active" data-eye="square">Square</div>
+                                <div class="shape-btn" data-eye="dot">Circle</div>
+                                <div class="shape-btn" data-eye="extra-rounded">Rounded</div>
+                            </div>
+                        </div>
+
+                        <!-- D. Logo Upload -->
+                        <div class="accordion-header" data-target="accLogo">
+                            <span><i class="fa-solid fa-icons"></i> D. Logo Integration</span>
+                            <i class="fa-solid fa-chevron-down acc-icon"></i>
+                        </div>
+                        <div class="accordion-content" id="accLogo">
+                            <div class="logo-upload-box">
+                                <input type="file" id="logoFileInput" class="clay-input" accept="image/png, image/svg+xml, image/jpeg">
+                                <div class="logo-preview-container">
+                                    <div class="logo-preview">
+                                        <img id="logoPreviewImg" src="" alt="">
+                                    </div>
+                                    <button type="button" id="removeLogoBtn" class="clay-btn danger clay-btn-sm" style="display:none;"><i class="fa-solid fa-trash"></i> Remove Logo</button>
+                                </div>
+                                <div>
+                                    <label style="font-size:0.85rem; font-weight:600;">Logo Size</label>
+                                    <input type="range" id="logoSizeSlider" min="0.15" max="0.4" step="0.05" value="0.3" style="width:100%;">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- E. Colors & Gradients -->
+                        <div class="accordion-header" data-target="accColors">
+                            <span><i class="fa-solid fa-palette"></i> E. Colors & Gradients</span>
+                            <i class="fa-solid fa-chevron-down acc-icon"></i>
+                        </div>
+                        <div class="accordion-content" id="accColors">
+                            <div class="color-picker-grid">
+                                <div class="color-item">
+                                    <input type="color" id="qrFgColor" class="color-input" value="#000000">
+                                    <span style="font-size:0.85rem; font-weight:600;">Foreground</span>
+                                </div>
+                                <div class="color-item">
+                                    <input type="color" id="qrBgColor" class="color-input" value="#ffffff">
+                                    <span style="font-size:0.85rem; font-weight:600;">Background</span>
+                                </div>
+                                <div class="color-item">
+                                    <input type="color" id="qrEyeColor" class="color-input" value="#000000">
+                                    <span style="font-size:0.85rem; font-weight:600;">Eye Color</span>
+                                </div>
+                            </div>
+
+                            <div style="margin-top: 15px;">
+                                <label style="display:flex; align-items:center; gap:10px; cursor:pointer; font-weight:600; font-size:0.85rem;">
+                                    <input type="checkbox" id="enableGradient"> Enable Color Gradient
+                                </label>
+                                <div class="color-item" style="margin-top:10px;">
+                                    <input type="color" id="qrGradientColor" class="color-input" value="#764ba2">
+                                    <span style="font-size:0.85rem; font-weight:600;">Gradient End Color</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="display:flex; gap: 15px; margin-top: 30px;">
+                        <button type="button" id="generateUniBtn" class="clay-btn secondary clay-btn-fluid"><i class="fa-solid fa-wand-magic-sparkles"></i> Generate QR Code</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Preview Section -->
+            <div class="generator-preview-panel clay-panel fade-in-up-delay-1">
+                <h3 style="margin-bottom: 20px; font-weight: 800; color: var(--primary);">Live QR Preview</h3>
+                
+                <div class="qr-preview-wrapper">
+                    <div class="qr-box" id="qrcode">
+                        <!-- Canvas rendered dynamically -->
+                    </div>
+                </div>
+
+                <div class="qr-actions">
+                    <button class="clay-btn secondary" id="openExportBtn"><i class="fa-solid fa-download"></i> Download / Export</button>
+                    <button class="clay-btn primary" id="copyDataBtn"><i class="fa-solid fa-copy"></i> Copy Data</button>
+                    <button class="clay-btn primary" id="shareBtn"><i class="fa-solid fa-share-nodes"></i> Share Sheet</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Export Resolution & Format Modal -->
+    <div class="modal-overlay" id="exportModal">
+        <div class="modal-card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+                <h3 style="font-size:1.4rem; font-weight:800; color:var(--primary);"><i class="fa-solid fa-download"></i> High-Quality Export</h3>
+                <button id="closeExportBtn" style="background:transparent; border:none; font-size:1.4rem; cursor:pointer; color:var(--text-muted);"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+
+            <div class="form-group">
+                <label>Select Format</label>
+                <div class="shapes-grid">
+                    <div class="shape-btn active" data-fmt="png">PNG</div>
+                    <div class="shape-btn" data-fmt="jpg">JPG</div>
+                    <div class="shape-btn" data-fmt="svg">SVG</div>
+                    <div class="shape-btn" data-fmt="webp">WEBP</div>
+                    <div class="shape-btn" data-fmt="pdf">PDF</div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>Select Resolution (Pixels)</label>
+                <div class="shapes-grid">
+                    <div class="shape-btn" data-res="500">500 x 500</div>
+                    <div class="shape-btn active" data-res="1000">1000 x 1000</div>
+                    <div class="shape-btn" data-res="2000">2000 x 2000</div>
+                    <div class="shape-btn" data-res="4000">4000 x 4000</div>
+                </div>
+            </div>
+
+            <button id="confirmDownloadBtn" class="clay-btn secondary clay-btn-fluid" style="margin-top:20px;"><i class="fa-solid fa-file-export"></i> Download Now</button>
+        </div>
+    </div>
+
+    <footer class="clay-panel">
+        <div class="container footer-content">
+            <div class="footer-logo">
+                <i class="fa-solid fa-qrcode"></i> QR Forge - AviNav v2.0
+            </div>
+            <div class="footer-tech">
+                <span><i class="fa-brands fa-html5"></i></span>
+                <span><i class="fa-brands fa-css3-alt"></i></span>
+                <span><i class="fa-brands fa-js"></i></span>
+            </div>
+            <div class="footer-links" style="color: var(--text-muted); font-weight: 500;">
+                Designed/Developed with ❤️ by AviNav
+            </div>
+        </div>
+    </footer>
+
+    <!-- External Libraries & Core JS -->
+    <script src="https://cdn.jsdelivr.net/npm/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
+    <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="js/script.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR History - QR Forge - AviNav</title>
+    <link rel="icon" href="assets/favicon.png" type="image/png">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#667eea">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+
+    <nav class="navbar clay-panel">
+        <div class="container nav-content">
+            <a href="index.html" class="logo">
+                <i class="fa-solid fa-qrcode"></i> QR Forge
+            </a>
+            <div class="nav-right-group">
+                <div class="nav-links">
+                    <a href="index.html" class="nav-link"><i class="fa-solid fa-house"></i> Home</a>
+                    <a href="upi.html" class="nav-link"><i class="fa-brands fa-google-pay"></i> UPI</a>
+                    <a href="whatsapp.html" class="nav-link"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+                    <a href="wifi.html" class="nav-link"><i class="fa-solid fa-wifi"></i> WiFi</a>
+                    <a href="universal.html" class="nav-link"><i class="fa-solid fa-link"></i> Universal</a>
+                    <a href="scanner.html" class="nav-link"><i class="fa-solid fa-camera"></i> Scanner</a>
+                    <a href="history.html" class="nav-link active"><i class="fa-solid fa-clock-rotate-left"></i> History</a>
+                </div>
+                <button class="mobile-menu-btn"><i class="fa-solid fa-bars"></i></button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <section class="history-section">
+            <div class="history-header">
+                <div>
+                    <h2 style="font-size: 2.2rem; color: var(--primary); font-weight: 800;"><i class="fa-solid fa-clock-rotate-left"></i> Generation & Scan History</h2>
+                    <p style="color: var(--text-muted);">Access your saved, generated, and scanned QR codes anytime offline.</p>
+                </div>
+                <button id="clearHistoryBtn" class="clay-btn danger"><i class="fa-solid fa-trash-can"></i> Clear All History</button>
+            </div>
+
+            <!-- Search & Filters -->
+            <div class="clay-panel" style="padding: 20px; margin-bottom: 25px;">
+                <div style="display: flex; gap: 20px; flex-wrap: wrap; justify-content: space-between; align-items: center;">
+                    <div class="history-search-bar" style="flex: 1; min-width: 250px;">
+                        <i class="fa-solid fa-magnifying-glass"></i>
+                        <input type="text" id="historySearchInput" class="clay-input" placeholder="Search history by content or type...">
+                    </div>
+                </div>
+
+                <div class="filter-pills" style="margin-top: 15px; margin-bottom: 0;">
+                    <button class="filter-pill active" data-filter="All">All</button>
+                    <button class="filter-pill" data-filter="Favorites"><i class="fa-solid fa-star" style="color: #f6e05e;"></i> Favorites</button>
+                    <button class="filter-pill" data-filter="UPI">UPI</button>
+                    <button class="filter-pill" data-filter="WhatsApp">WhatsApp</button>
+                    <button class="filter-pill" data-filter="WiFi">WiFi</button>
+                    <button class="filter-pill" data-filter="Universal">Universal</button>
+                    <button class="filter-pill" data-filter="Scanned">Scanned</button>
+                </div>
+            </div>
+
+            <!-- History Grid -->
+            <div class="history-grid" id="historyGrid">
+                <!-- Rendered dynamically by script.js -->
+            </div>
+        </section>
+    </main>
+
+    <footer class="clay-panel">
+        <div class="container footer-content">
+            <div class="footer-logo">
+                <i class="fa-solid fa-qrcode"></i> QR Forge - AviNav v2.0
+            </div>
+            <div class="footer-tech">
+                <span><i class="fa-brands fa-html5"></i></span>
+                <span><i class="fa-brands fa-css3-alt"></i></span>
+                <span><i class="fa-brands fa-js"></i></span>
+            </div>
+            <div class="footer-links" style="color: var(--text-muted); font-weight: 500;">
+                Designed/Developed with ❤️ by AviNav
+            </div>
+        </div>
+    </footer>
+
+    <!-- External Libraries & Core JS -->
+    <script src="https://cdn.jsdelivr.net/npm/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="js/script.js"></script>
+</body>
+
+</html>

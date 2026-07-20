@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WhatsApp QR Generator - QR Forge - AviNav</title>
+    <link rel="icon" href="assets/favicon.png" type="image/png">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#667eea">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+
+    <nav class="navbar clay-panel">
+        <div class="container nav-content">
+            <a href="index.html" class="logo">
+                <i class="fa-solid fa-qrcode"></i> QR Forge
+            </a>
+            <div class="nav-right-group">
+                <div class="nav-links">
+                    <a href="index.html" class="nav-link"><i class="fa-solid fa-house"></i> Home</a>
+                    <a href="upi.html" class="nav-link"><i class="fa-brands fa-google-pay"></i> UPI</a>
+                    <a href="whatsapp.html" class="nav-link active"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+                    <a href="wifi.html" class="nav-link"><i class="fa-solid fa-wifi"></i> WiFi</a>
+                    <a href="universal.html" class="nav-link"><i class="fa-solid fa-link"></i> Universal</a>
+                    <a href="scanner.html" class="nav-link"><i class="fa-solid fa-camera"></i> Scanner</a>
+                    <a href="history.html" class="nav-link"><i class="fa-solid fa-clock-rotate-left"></i> History</a>
+                </div>
+                <button class="mobile-menu-btn"><i class="fa-solid fa-bars"></i></button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <div class="generator-layout">
+            <!-- Form Section -->
+            <div class="generator-form-panel clay-panel fade-in-up">
+                <div style="display: flex; align-items: center; gap: 15px; margin-bottom: 20px;">
+                    <div class="card-icon" style="margin: 0; color: #25D366;"><i class="fa-brands fa-whatsapp"></i></div>
+                    <div>
+                        <h2 style="font-size: 1.8rem; font-weight: 800; color: var(--primary);">WhatsApp QR Generator</h2>
+                        <p style="color: var(--text-muted); font-size: 0.9rem;">Start direct WhatsApp chats with optional pre-filled messages.</p>
+                    </div>
+                </div>
+
+                <form id="waForm">
+                    <div class="form-group">
+                        <label for="waPhone">Phone Number (with Country Code) *</label>
+                        <input type="tel" id="waPhone" class="clay-input" placeholder="e.g. 919876543210" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="waMessage">Pre-filled Chat Message</label>
+                        <textarea id="waMessage" class="clay-input" rows="4" placeholder="e.g. Hello! I would like to inquire about your services."></textarea>
+                    </div>
+
+                    <!-- Customization Accordion -->
+                    <div class="customizer-accordion">
+                        <div class="accordion-header" data-target="accFrames">
+                            <span><i class="fa-solid fa-border-top-left"></i> WhatsApp Frames</span>
+                            <i class="fa-solid fa-chevron-down acc-icon"></i>
+                        </div>
+                        <div class="accordion-content" id="accFrames">
+                            <div class="frames-grid">
+                                <div class="frame-card active" data-frame="none">None</div>
+                                <div class="frame-card" data-frame="whatsapp">WhatsApp</div>
+                                <div class="frame-card" data-frame="rounded">Rounded</div>
+                            </div>
+                        </div>
+
+                        <div class="accordion-header" data-target="accColors">
+                            <span><i class="fa-solid fa-palette"></i> Colors</span>
+                            <i class="fa-solid fa-chevron-down acc-icon"></i>
+                        </div>
+                        <div class="accordion-content" id="accColors">
+                            <div class="color-picker-grid">
+                                <div class="color-item">
+                                    <input type="color" id="qrFgColor" class="color-input" value="#25D366">
+                                    <span style="font-size:0.85rem; font-weight:600;">Foreground</span>
+                                </div>
+                                <div class="color-item">
+                                    <input type="color" id="qrBgColor" class="color-input" value="#ffffff">
+                                    <span style="font-size:0.85rem; font-weight:600;">Background</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div style="display:flex; gap: 15px; margin-top: 30px;">
+                        <button type="button" id="generateWaBtn" class="clay-btn secondary clay-btn-fluid" style="background: linear-gradient(135deg, #25D366 0%, #128C7E 100%);"><i class="fa-brands fa-whatsapp"></i> Generate WhatsApp QR</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Preview Section -->
+            <div class="generator-preview-panel clay-panel fade-in-up-delay-1">
+                <h3 style="margin-bottom: 20px; font-weight: 800; color: var(--primary);">WhatsApp QR Preview</h3>
+
+                <div class="qr-preview-wrapper">
+                    <div class="qr-box" id="qrcode">
+                        <!-- Canvas rendered dynamically -->
+                    </div>
+                </div>
+
+                <div class="qr-actions">
+                    <button class="clay-btn secondary" id="openExportBtn"><i class="fa-solid fa-download"></i> Export</button>
+                    <button class="clay-btn primary" id="copyDataBtn"><i class="fa-solid fa-copy"></i> Copy Link</button>
+                    <button class="clay-btn primary" id="shareBtn"><i class="fa-solid fa-share-nodes"></i> Share</button>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Export Modal -->
+    <div class="modal-overlay" id="exportModal">
+        <div class="modal-card">
+            <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+                <h3 style="font-size:1.4rem; font-weight:800; color:var(--primary);"><i class="fa-solid fa-download"></i> Export WhatsApp QR</h3>
+                <button id="closeExportBtn" style="background:transparent; border:none; font-size:1.4rem; cursor:pointer; color:var(--text-muted);"><i class="fa-solid fa-xmark"></i></button>
+            </div>
+            <div class="form-group">
+                <label>Format</label>
+                <div class="shapes-grid">
+                    <div class="shape-btn active" data-fmt="png">PNG</div>
+                    <div class="shape-btn" data-fmt="jpg">JPG</div>
+                    <div class="shape-btn" data-fmt="svg">SVG</div>
+                    <div class="shape-btn" data-fmt="pdf">PDF</div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label>Resolution</label>
+                <div class="shapes-grid">
+                    <div class="shape-btn" data-res="500">500 x 500</div>
+                    <div class="shape-btn active" data-res="1000">1000 x 1000</div>
+                    <div class="shape-btn" data-res="2000">2000 x 2000</div>
+                </div>
+            </div>
+            <button id="confirmDownloadBtn" class="clay-btn secondary clay-btn-fluid" style="margin-top:20px;"><i class="fa-solid fa-file-export"></i> Download Now</button>
+        </div>
+    </div>
+
+    <footer class="clay-panel">
+        <div class="container footer-content">
+            <div class="footer-logo">
+                <i class="fa-solid fa-qrcode"></i> QR Forge - AviNav v2.0
+            </div>
+            <div class="footer-tech">
+                <span><i class="fa-brands fa-html5"></i></span>
+                <span><i class="fa-brands fa-css3-alt"></i></span>
+                <span><i class="fa-brands fa-js"></i></span>
+            </div>
+            <div class="footer-links" style="color: var(--text-muted); font-weight: 500;">
+                Designed/Developed with ❤️ by AviNav
+            </div>
+        </div>
+    </footer>
+
+    <!-- External Libraries & Core JS -->
+    <script src="https://cdn.jsdelivr.net/npm/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="js/script.js"></script>
+</body>
+
+</html>

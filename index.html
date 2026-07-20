@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>QR Forge - AviNav - Smart QR Generator Platform</title>
+    <link rel="icon" href="assets/favicon.png" type="image/png">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#667eea">
+
+    <link rel="stylesheet" href="css/style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+    <div class="blob blob-1"></div>
+    <div class="blob blob-2"></div>
+    <div class="blob blob-3"></div>
+
+    <nav class="navbar clay-panel">
+        <div class="container nav-content">
+            <a href="index.html" class="logo">
+                <i class="fa-solid fa-qrcode"></i> QR Forge
+            </a>
+            <div class="nav-right-group">
+                <div class="nav-links">
+                    <a href="index.html" class="nav-link active"><i class="fa-solid fa-house"></i> Home</a>
+                    <a href="upi.html" class="nav-link"><i class="fa-brands fa-google-pay"></i> UPI</a>
+                    <a href="whatsapp.html" class="nav-link"><i class="fa-brands fa-whatsapp"></i> WhatsApp</a>
+                    <a href="wifi.html" class="nav-link"><i class="fa-solid fa-wifi"></i> WiFi</a>
+                    <a href="universal.html" class="nav-link"><i class="fa-solid fa-link"></i> Universal</a>
+                    <a href="scanner.html" class="nav-link"><i class="fa-solid fa-camera"></i> Scanner</a>
+                    <a href="history.html" class="nav-link"><i class="fa-solid fa-clock-rotate-left"></i> History</a>
+                </div>
+                <button class="mobile-menu-btn"><i class="fa-solid fa-bars"></i></button>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="hero-content clay-panel floating">
+                <h1 class="bounce-in">QR Forge - AviNav <br><span class="gradient-text">v2.0 Smart Platform</span></h1>
+                <p class="fade-in">Create premium, high-quality customizable QR codes for UPI payments, WhatsApp, WiFi, VCards, Image files, and scan QRs live with your camera. Fully frontend-only & offline ready!</p>
+                <div class="cta-group fade-in-up">
+                    <a href="#tools" class="clay-btn primary"><i class="fa-solid fa-wand-magic-sparkles"></i> Explore Generators</a>
+                    <a href="scanner.html" class="clay-btn secondary"><i class="fa-solid fa-camera"></i> Scan QR Code</a>
+                </div>
+            </div>
+            <div class="hero-illustration">
+                <div class="qr-animated-placeholder clay-panel-deep">
+                    <i class="fa-solid fa-qrcode floating-icon"></i>
+                    <div class="scan-line"></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Feature Cards -->
+        <section id="tools" class="tools-section">
+            <h2 class="section-title">Professional Generators & Tools</h2>
+            <div class="grid cards-grid">
+                <a href="upi.html" class="tool-card clay-card fade-in-up-delay-1">
+                    <div class="card-icon"><i class="fa-brands fa-google-pay"></i></div>
+                    <h3>UPI QR Generator</h3>
+                    <p>Receive payments instantly with pre-filled UPI details.</p>
+                    <div class="card-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+                </a>
+
+                <a href="whatsapp.html" class="tool-card clay-card fade-in-up-delay-2">
+                    <div class="card-icon"><i class="fa-brands fa-whatsapp"></i></div>
+                    <h3>WhatsApp QR</h3>
+                    <p>Start chats effortlessly with pre-filled text.</p>
+                    <div class="card-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+                </a>
+
+                <a href="wifi.html" class="tool-card clay-card fade-in-up-delay-3">
+                    <div class="card-icon"><i class="fa-solid fa-wifi"></i></div>
+                    <h3>WiFi QR</h3>
+                    <p>Connect guests to your network without sharing passwords.</p>
+                    <div class="card-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+                </a>
+
+                <a href="universal.html" class="tool-card clay-card fade-in-up-delay-4">
+                    <div class="card-icon"><i class="fa-solid fa-wand-magic-sparkles"></i></div>
+                    <h3>Universal Generator</h3>
+                    <p>Text, URL, Images, Email, SMS, Phone, Location & VCard QRs.</p>
+                    <div class="card-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+                </a>
+
+                <a href="scanner.html" class="tool-card clay-card fade-in-up-delay-1">
+                    <div class="card-icon"><i class="fa-solid fa-camera"></i></div>
+                    <h3>Smart QR Scanner</h3>
+                    <p>Scan QRs live with camera or decode image files.</p>
+                    <div class="card-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+                </a>
+
+                <a href="history.html" class="tool-card clay-card fade-in-up-delay-2">
+                    <div class="card-icon"><i class="fa-solid fa-clock-rotate-left"></i></div>
+                    <h3>QR History</h3>
+                    <p>Store, search, favorite, and re-generate your QR history.</p>
+                    <div class="card-arrow"><i class="fa-solid fa-arrow-right"></i></div>
+                </a>
+            </div>
+        </section>
+
+        <!-- Stats Section -->
+        <section class="stats-section">
+            <div class="grid stats-grid">
+                <div class="stat-card clay-panel">
+                    <div class="stat-icon"><i class="fa-solid fa-qrcode"></i></div>
+                    <div class="stat-value" data-target="100000">0</div>
+                    <div class="stat-label">QR Generated</div>
+                </div>
+                <div class="stat-card clay-panel">
+                    <div class="stat-icon"><i class="fa-solid fa-mobile-screen"></i></div>
+                    <div class="stat-value" data-target="100">0</div>
+                    <div class="stat-label">Supported Devices</div>
+                </div>
+                <div class="stat-card clay-panel">
+                    <div class="stat-icon"><i class="fa-solid fa-rocket"></i></div>
+                    <div class="stat-value" data-target="50">0</div>
+                    <div class="stat-label">Supported Apps</div>
+                </div>
+                <div class="stat-card clay-panel">
+                    <div class="stat-icon"><i class="fa-solid fa-bolt"></i></div>
+                    <div class="stat-value" data-target="100">0</div>
+                    <div class="stat-label">Offline Ready (%)</div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="clay-panel">
+        <div class="container footer-content">
+            <div class="footer-logo">
+                <i class="fa-solid fa-qrcode"></i> QR Forge - AviNav v2.0
+            </div>
+            <div class="footer-tech">
+                <span><i class="fa-brands fa-html5"></i></span>
+                <span><i class="fa-brands fa-css3-alt"></i></span>
+                <span><i class="fa-brands fa-js"></i></span>
+            </div>
+            <div class="footer-links" style="color: var(--text-muted); font-weight: 500;">
+                Designed/Developed with ❤️ by AviNav
+            </div>
+        </div>
+    </footer>
+
+    <!-- External Libraries & Core JS -->
+    <script src="https://cdn.jsdelivr.net/npm/qr-code-styling@1.5.0/lib/qr-code-styling.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="js/script.js"></script>
+</body>
+
+</html>
