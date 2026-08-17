@@ -29,6 +29,11 @@ This project is a **frontend-focused web tool built using HTML, CSS, and JavaScr
 
 ---
 
+**📲 Android APK**
+Download the latest APK
+
+👉  https://drive.google.com/drive/folders/1gPzTjWnK_FnR56XAte-G2aUrpG0-Rilk?usp=drive_link
+
 # 🎯 Features
 
 ### 🏠 Animated Dashboard
@@ -168,6 +173,11 @@ https://github.com/kmr-abhinav23
 This project is licensed under the **MIT License**.
 
 ---
+
+<p align="center">
+  <b>QR Forge AviNav</b><br>
+  Built with ❤️ by AviNav Graphics
+</p>
 
 # ⭐ Support
 
